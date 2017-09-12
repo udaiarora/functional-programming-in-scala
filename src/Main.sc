@@ -30,7 +30,31 @@ def isSorted[A](as: Array[A], ordered: (A,A) => Boolean): Boolean = {
 
   isSortedHelper(0)
 }
-println(isSorted(Array(10,20,40,50), (one: Int, two: Int) => two>=one))
-println(isSorted(Array("aa", "bb", "ccc", "ccd"), (one: String, two: String) => two.compareTo(one)>=0))
-println(isSorted(Array(10,20,60,50), (one: Int, two: Int) => two>one))
-println(isSorted(Array("aa", "bb", "cce", "ccd"), (one: String, two: String) => two.compareTo(one)>=0))
+
+//println(isSorted(Array(10,20,40,50), (one: Int, two: Int) => two>=one))
+//println(isSorted(Array("aa", "bb", "ccc", "ccd"), (one: String, two: String) => two.compareTo(one)>=0))
+//println(isSorted(Array(10,20,60,50), (one: Int, two: Int) => two>one))
+//println(isSorted(Array("aa", "bb", "cce", "ccd"), (one: String, two: String) => two.compareTo(one)>=0))
+
+
+
+// 2.3
+def curry[A,B,C](f: (A, B) => C): A => (B => C) = {
+  (a: A) => {
+    (b: B) => f(a,b)
+  }
+}
+
+
+
+// 2.4
+def uncurry[A,B,C](f: A => B => C): (A, B) => C = {
+  (a: A, b: B) => f(a)(b)
+}
+
+
+
+// 2.5
+def compose[A,B,C](f: B => C, g: A => B): A => C = {
+  (a: A) => f(g(a))
+}
